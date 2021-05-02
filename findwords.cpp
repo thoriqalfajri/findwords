@@ -44,8 +44,26 @@ bool searchHorizontal(char masuk[]){
     return false; 
 }
 
-bool searchVertical(char \){
-	
+bool searchVertical(char masuk[]){
+	char *liat;
+	char kata[15];
+	for (int i = 0; i < 15; i++){
+        for (int j = 0; j < 15; j++){
+            kata[j] = words[j][i];
+        }
+        liat = strstr(kata, masuk);
+        if(liat != NULL){
+	        return true;
+	    }
+	    else{
+	    	reverse(kata, kata + strlen(kata)); 
+            liat = strstr(kata, masuk);
+            if(liat != NULL){
+	          return true;
+	        }
+		}
+    }
+    return false;
 }
 
 int main()

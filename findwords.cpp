@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 
 using namespace std;
 const int cols = 16, rows = 15;
@@ -27,8 +28,8 @@ bool searchHorizontal(char masuk[]){
 	char *liat;
 	char kata[15];
 	
-	for (int i = 0; i < 15; i++){
-    	for(int j = 0; j < 15; j++){
+	for (int i=0;i<15;i++){
+    	for(int j=0;j<15;j++){
 	    	kata[j] = words[i][j];
 		}
 		liat = strstr(words[i], masuk);
@@ -41,22 +42,29 @@ bool searchHorizontal(char masuk[]){
 	        if(liat != NULL){ 
 	            return true; 
 	        }
-	    } 
+		} 
     }
     return false; 
 }
 
-bool searchVertical(char input[]){
-	char *check;
+bool searchVertical(char masuk[]){
+	char *liat;
 	char kata[15];
 	for (int i = 0; i < 15; i++){
         for (int j = 0; j < 15; j++){
             kata[j] = words[j][i];
         }
-        check = strstr(kata, input);
-        if(check != NULL){
+        liat = strstr(kata, masuk);
+        if(liat != NULL){
 	        return true;
 	    }
+	    else{
+	    	reverse(kata, kata + strlen(kata)); 
+            liat = strstr(kata, masuk);
+            if(liat != NULL){
+	          return true;
+	        }
+		}
     }
     return false;
 }
@@ -65,7 +73,7 @@ int main()
 {
     char word[16];
     int n;
-    cout << "Masukkan Banyak kata yang ingin dicari : ";
+    cin.ignore();
     cin>>n;
     for (int i=0;i<n;i++){
     	cin.ignore();

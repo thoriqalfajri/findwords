@@ -23,10 +23,11 @@ const int cols = 16, rows = 15;
 char *getWordVertical(int);
 char *reverse(char *);
 bool searchVertical(char *);
-bool searchHorizontal(char input[]){
+
+bool searchHorizontal(char data[]){
 	char *check;
 	for (int i = 0; i < 15; i++){
-        check = strstr(words[i], input);
+        check = strstr(words[i], data);
 	    if(check != NULL){
 	        return true;
 	    }
@@ -34,6 +35,20 @@ bool searchHorizontal(char input[]){
     return false;
 }
 
+bool searchVertical(char data[]){
+	char *check;
+	char word[15];
+	for (int i = 0; i < 15; i++){
+        for (int j = 0; j < 15; j++){
+            word[j] = words[j][i];
+        }
+        check = strstr(word, data);
+        if(check != NULL){
+	        return true;
+	    }
+    }
+    return false;
+}
 
 int main()
 {

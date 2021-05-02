@@ -5,35 +5,45 @@ using namespace std;
 const int cols = 16, rows = 15;
 
  char words[rows][cols] = {"tgbwwinterwsesn",
-                        	"aaunttmmhfoodnb",
-                            "jlwcqldzmpmvdmr",
-                            "asagmquwvvbsohi",
-                            "bwplotanadtpgnc",
-                            "rewngodjcpnatnk",
-                            "eeotwosbqharrsa",
-                            "azcgeswewnaknpb",
-                            "dinnerqodlwdcar",
-                            "onopkwmparktzcc",
-                            "qbfrogmamwpweey",
-                            "lqzqnnmrzjjsclg",
-                            "mosgzczetdbooto",
-                            "pdcrzmsngrdnrpz",
-                            "ohnkzwaterjgtra"};
+                                "aaunttmmhfoodnb",
+                                "jlwcqldzmpmvdmr",
+                                "asagmquwvvbsohi",
+                                "bwplotanadtpgnc",
+                                "rewngodjcpnatnk",
+                                "eeotwosbqharrsa",
+                                "azcgeswewnaknpb",
+                                "dinnerqodlwdcar",
+                                "onopkwmparktzcc",
+                                "qbfrogmamwpweey",
+                                "lqzqnnmrzjjsclg",
+                                "mosgzczetdbooto",
+                                "pdcrzmsngrdnrpz",
+                                "ohnkzwaterjgtra"};
 
 char *getWordVertical(int);
 char *reverse(char *);
-bool searchVertical(char *);
-bool searchHorizontal(char *);
 
-bool searchHorizontal(char input[]){
-	char *check;
-	for (int i=0;i<15;i++){
-        check = strstr(words[i], input);
-	    if(check != NULL){
+bool searchHorizontal(char masuk[]){
+	char *liat;
+	char kata[15];
+	
+	for (int i = 0; i < 15; i++){
+    	for(int j = 0; j < 15; j++){
+	    	kata[j] = words[i][j];
+		}
+		liat = strstr(words[i], masuk);
+	    if(liat != NULL){
 	        return true;
 	    }
+	    else{
+	    	reverse(kata, kata + strlen(kata));
+	        liat = strstr(kata, masuk); 
+	        if(liat != NULL){ 
+	            return true; 
+	        }
+	    } 
     }
-    return false;
+    return false; 
 }
 
 bool searchVertical(char input[]){
